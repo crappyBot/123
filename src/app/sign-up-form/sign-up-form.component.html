@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="col-sm-4 custom-container jumbotron" style="background-color: rgb(194, 217, 235);">
+    <form #frm="ngForm" (ngSubmit)="searchQuerry(frm)">
+      <fieldset>
+        <legend>Flight Loop up System</legend>
+        <div class="form-row">
+          <!--- Orign City --->
+          <div class="form-group">
+            <label for="inputOrignCity">Orign City</label>
+            <span><small id="dateHelpText" class="text-muted">
+                Letters only.
+              </small>
+            </span>
+            <input type="text" id="inputOrignCity" placeholder="Three letter City code like IAH" name="inputOrignCity"
+              class="form-control" pattern="[a-zA-Z][a-zA-Z]+" ngModel #origncity="ngModel" required>
+          </div>
+          <!--- Destination City --->
+          <div class="form-group">
+            <label for="inputDestinationCity">Destination City</label>
+            <small id="dateHelpText" class="text-muted">
+              Letters only.
+            </small>
+            <input type="text" id="inputDestinationCity" placeholder="Three letter City code like ORD" name="inputDestinationCity"
+              pattern="[a-zA-Z][a-zA-Z]+" class="form-control" ngModel #destinationcity="ngModel" required>
+          </div>
+        </div>
+        <!--- Flight number --->
+        <div class="form-group">
+          <label for="inputFlightNumber">Flight Number</label>
+          <small id="dateHelpText" class="text-muted">
+            Numbers only.
+          </small>
+          <input type="text" id="inputFlightNumber" placeholder="Flight Number" name="inputFlightNumber" class="form-control"
+            pattern="[0-9]*" ngModel #flightnumber="ngModel">
+        </div>
+        <!--Date Block-->
+        <div class="form-group">
+          <label for="querryDate">Travel Date</label>
+          <small id="dateHelpText" class="text-muted">
+            Required.
+          </small>
+          <input type="date" id="querryDate" placeholder="Travel date" name="querryDate" class="form-control" ngModel
+            #querrydate="ngModel" required>
+        </div>
+        <!--- Buttons Block --->
+        <div class="form-group">
+          <button type="reset" class="btn btn-clear">Clear</button>
+          <span class="form-group" *ngIf="(flightnumber.valid||(origncity.valid&&destinationcity.valid))&&querrydate.valid">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </span>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<!--{{frm.value | json}}-->
